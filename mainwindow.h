@@ -15,6 +15,7 @@
 #include <QMouseEvent>
 #include <QInputDialog>
 #include "mydetectioncount.h"
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -23,11 +24,11 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void changeWindow(QImage image);
+    void sendCoord(int kx, int ky);
     int xS,yS,xS1,yS1,xS2,yS2,xS3,yS3,MAXN1;
     qreal xArr,yArr;
-    int counter=0;
-    myDetectionCount count1;
-    void sendCoord(int kx, int ky);
+    int counter = 0;
+    MyDetectionCount count1;
 
 private:
     QLabel *label;

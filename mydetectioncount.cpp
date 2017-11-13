@@ -1,38 +1,38 @@
 #include "mydetectioncount.h"
 
-myDetectionCount::myDetectionCount()
+MyDetectionCount::MyDetectionCount()
 {
 
 }
-qreal myDetectionCount::blackCount(QColor first)
+qreal MyDetectionCount::blackCount(QColor first)
 {
     qreal GBF;
     GBF=first.blue() + first.green();
     return GBF;
 }
 
-bool myDetectionCount::isBlack(int x, int y , QImage image)
+bool MyDetectionCount::isBlack(int x, int y , QImage image)
 {
    if (blackCount(image.pixelColor(x,y)) < 90)
        return true;
         else
        return false;
 }
-bool myDetectionCount::isBlack1(qreal ans)
+bool MyDetectionCount::isBlack1(qreal ans)
 {
    if (ans < 85)
        return true;
         else
        return false;
 }
-void myDetectionCount::findEdgeAngle()
+void MyDetectionCount::findEdgeAngle()
 {
     qreal k;
     k = edgeRy - YA;
     k /= edgeRx - XA;
     deg =((0 - 1) * qAtan(k));
 }
-qreal myDetectionCount::angle(QImage image)
+qreal MyDetectionCount::angle(QImage image)
 {
     int lev1 =  edgeRy +  4*(yup - edgeRy) / 6;
     int f = 0;
@@ -81,7 +81,7 @@ qreal myDetectionCount::angle(QImage image)
             return ((ans1 - deg)/(M_PI -  (2 * deg)));
         }
 }
-qreal myDetectionCount::ans(QImage image)
+qreal MyDetectionCount::ans(QImage image)
 {
     findEdgeAngle();
     return angle(image)*maxNumber;
