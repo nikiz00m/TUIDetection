@@ -28,8 +28,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    cameraframegrabber.cpp
+    cameraframegrabber.cpp \
+    mydetectioncount.cpp
 
 HEADERS += \
         mainwindow.h \
-    cameraframegrabber.h
+    cameraframegrabber.h \
+    mydetectioncount.h

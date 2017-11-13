@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "cameraframegrabber.h"
+#include "mydetectioncount.h"
 #include <QLabel>
 #include <QDebug>
 #include <QTransform>
@@ -74,14 +75,35 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         }
     }
 }
+void MainWindow::sendCoord(int kx, int ky)
+{
+    count1.xL = kx * std::min(xS,xS1);
+    count1.xR = kx * std::max(xS,xS1);
+    count1.yup = ky * std::max(yS,yS1);
+    count1.yd = ky * std::min(yS,yS1);
+    count1.middleX = count1.xL + count1.xR;
+    count1.middleX = count1.middleX / 2;
+    count1.middleY = count1.yd + count1.yup;
+    count1.middleY = count1.middleY / 2;
+    count1.edgeRx = kx * std::max(xS2,xS3);
+    count1.edgeRy = ky * std::max(yS2,yS3);
+    count1.XA = xArr * kx;
+    count1.YA = yArr * ky;
+    count1.maxNumber = MAXN1;
+}
 void MainWindow::handleFrame1(QImage image)
 {
-    qDebug() << "loh";
-    //qDebug() << image.pixelColor(100,100);
-    //image.mirrored();
-    QTransform myTransf,myTransf1;
+    QTransform myTransf;
     myTransf.rotate(180);
     image = image.transformed(myTransf);
     image = image.mirrored(true,false);
+    int q1,q2;
     this->changeWindow(image);
+    if (counter > 4 )
+    {
+        q1 = image.width() / 1000;
+        q2 = image.height() / 800;
+        sendCoord(q1,q2);
+        qDebug() << count1.ans(image);
+    }
 }

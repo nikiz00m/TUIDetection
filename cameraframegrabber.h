@@ -1,7 +1,6 @@
 #ifndef CAMERAFRAMEGRABBER_H
 #define CAMERAFRAMEGRABBER_H
 
-// Qt includes
 #include <QAbstractVideoSurface>
 #include <QList>
 #include <QCamera>
